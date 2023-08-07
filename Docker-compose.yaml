@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    
+
+  db:
+    image: "mongo:latest"
+    environment:      
+      MONGODB_URI: "mongodb://db:27017/hotel_reservation"
+    ports:
+      - "27017:27018"
+    volumes:
+      - mongodb_data:/data/db
+volumes:
+  mongodb_data:
+
