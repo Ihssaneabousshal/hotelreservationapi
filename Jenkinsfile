@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Test GitHub Connectivity') {
             steps {
-                echo 'Testing GitHub connectivity!'
+                echo 'Testing GitHub connectivity private!'
             }
         }
     }
