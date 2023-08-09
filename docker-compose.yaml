@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: app
     ports:
       - "3000:3000"
     depends_on:
@@ -14,6 +15,7 @@ services:
     image: "mongo:latest"
     environment:      
       MONGODB_URI: "mongodb://db:27017/hotel_reservation"
+    container_name: db
     ports:
       - "27017:27018"
     volumes:
