@@ -1,15 +1,21 @@
 pipeline {
     agent any
-    
+
     stages {
-        stage('Get inventory') {
+        stage('Download Inventory') {
             steps {
-                sh "aws s3 cp s3://apiappinventorybucket/dynamic_inventory.ini ${currentBuild.workspace}"
+                script {
+                    sh "aws s3 cp s3://your-inventory-bucket-name/dynamic_inventory.ini ./"
+                }
             }
         }
-        stage('Update') {
+
+        stage('Run Ansible') {
             steps {
-                ansiblePlaybook credentialsId: 'ec2', inventory: 'dynamic_inventory.ini', playbook: 'configapp.yml'
+                ansiblePlaybook(
+                    inventory: "./dynamic_inventory.ini",
+                    playbook: "configapp.yml"
+                )
             }
         }
     }
