@@ -1,0 +1,19 @@
+---
+- hosts: ec2_instances
+  become: true
+  tasks:
+    - name: Clone api repo
+      git:
+        repo: https://github.com/Ihssaneabousshal/hotelreservationapi.git
+        dest: /hotelreservationapi
+        force: yes
+
+    - name: delete containers
+      command: docker-compose down --volumes --rmi all
+      args:
+        chdir: /hotelreservationapi
+
+    - name: run docker
+      command: docker-compose up -d
+      args:
+        chdir: /hotelreservationapi
