@@ -5,7 +5,7 @@ pipeline {
         stage('Download Inventory') {
             steps {
                 script {
-                    sh "aws s3 cp s3://your-inventory-bucket-name/dynamic_inventory.ini ./"
+                    sh "aws s3 cp s3://apiappinventorybucket/dynamic_inventory.ini ./"
                 }
             }
         }
