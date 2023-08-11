@@ -2,9 +2,9 @@ pipeline {
     agent any
     
     stages {
-        stage('Test GitHub Connectivity') {
+        stage('Update') {
             steps {
-                echo 'Testing GitHub connectivity is it workin in private indeed!'
+                ansiblePlaybook credentialsId: 'ec2', inventory: 'dynamic_inventory.ini', playbook: 'configapp.yml'
             }
         }
     }
